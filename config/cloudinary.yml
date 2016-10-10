@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dl6n46sbu
+  api_key: '977474388264197'
+  api_secret: xT3-54RHWRCAeiilkghY-yUdSuo
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dl6n46sbu
+  api_key: '977474388264197'
+  api_secret: xT3-54RHWRCAeiilkghY-yUdSuo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dl6n46sbu
+  api_key: '977474388264197'
+  api_secret: xT3-54RHWRCAeiilkghY-yUdSuo
+  enhance_image_tag: true
+  static_image_support: false

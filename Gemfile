@@ -3,8 +3,14 @@ source 'http://rubygems.org'
 gem 'materialize-sass'
 #Postgresql being used for DB
 #gem 'pg'
+#Carrierwave being used for implementation of user/bike photos.
+gem 'carrierwave'
+#Cloudinary for cloud-based image hosting
+gem 'cloudinary'
 #Devise used for user management
 gem 'devise'
+#Growlyflash makes error messages/notices look purty
+gem 'growlyflash'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

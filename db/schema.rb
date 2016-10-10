@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006014613) do
+ActiveRecord::Schema.define(version: 20161010003144) do
 
   create_table "bikes", force: :cascade do |t|
     t.integer  "profile_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20161006014613) do
     t.text     "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "avatar"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
