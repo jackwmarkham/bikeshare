@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= @bike.inspect %>
+
+<% @bike.pictures.each do |pic| %>
+  <%= image_tag(pic.url) %>
+<% end %>
 <p>
   <strong>Profile:</strong>
-  <%= @bike.profile %>
+  <%= @bike.profile.first_name %>
 </p>
 
 <p>

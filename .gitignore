@@ -11,6 +11,10 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+#ignore dis shit
+/config/database.yml
+/config/secrets.yml
+/config/cloudinary.yml
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep

@@ -25,7 +25,7 @@ class BikesController < ApplicationController
   # POST /bikes.json
   def create
     @bike = Bike.new(bike_params)
-
+    @bike.profile = current_user.profile if current_user
     respond_to do |format|
       if @bike.save
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
@@ -69,6 +69,6 @@ class BikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bike_params
-      params.require(:bike).permit(:profile_id, :description, :gears)
+      params.require(:bike).permit(:profile_id, :description, :gears, {pictures: []})
     end
 end
