@@ -3,7 +3,7 @@
 <%= @bike.inspect %>
 
 <% @bike.pictures.each do |pic| %>
-  <%= image_tag(pic.url) %>
+  <%= image_tag(pic.url, class: "bike_pic") %>
 <% end %>
 <p>
   <strong>Profile:</strong>

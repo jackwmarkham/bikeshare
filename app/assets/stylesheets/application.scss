@@ -13,10 +13,23 @@
  *= require_tree .
  *= require_self
  */
- @import "materialize/components/color";
- $primary-color: color("deep-orange", "lighten-2") !default;
- @import 'materialize';
+@import "materialize/components/color";
+$primary-color: color("grey", "darken-3") !default;
+@import 'materialize';
 
 body {
-  background-color: #fbe9e7;
+  background-color: #757575;
+}
+
+.bike_pic {
+  height: 100px;
+  width: auto;
+}
+
+.profile_pic {
+  height: auto;
+  width: 50%;
+  display: blick;
+  margin-left: auto;
+  margin-right: auto;
 }

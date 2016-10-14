@@ -9,9 +9,8 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'cloudinary'
 #Devise used for user management
 gem 'devise'
-#Growlyflash makes error messages/notices look purty
-gem 'growlyflash'
-
+#Dropzone to make image uploads more intuitive
+#gem 'dropzonejs-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Dont Use sqlite3 as the database for Active Record

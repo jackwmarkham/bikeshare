@@ -8,27 +8,32 @@
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
+    </div> 
   <% end %>
-  <p>
-  <label>Profile Picture</label>
-  <%= image_tag(@profile.avatar_url) if @profile.avatar? %>
-  <%= f.file_field :avatar %>
-  </p>
+  <%= image_tag(@profile.avatar_url, class:"bike_pic") if @profile.avatar? %>
+<div>
+  <div class="file-field input-field gallery_picture">
+    <div class="btn waves-effect waves-light">
+  <span>Upload a Photo</span>
 
-  <div class="field">
+  <%= f.file_field :avatar %>
+</div>
+<input class="file-path validate" type="text"/>
+</div>
+</div>
+  <div class="input-field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
   </div>
-  <div class="field">
+  <div class="input-field">
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
-    <%= f.label :bio %><br>
-    <%= f.text_area :bio %>
+  <div class="input-field">
+    <%= f.label :bio, "Description" %><br>
+    <%= f.text_area :bio, class: "materialize-textarea" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn waves-effect waves-light" %>
   </div>
 <% end %>
