@@ -11,6 +11,10 @@ gem 'cloudinary'
 gem 'devise'
 #Dropzone to make image uploads more intuitive
 #gem 'dropzonejs-rails'
+#For adding pickup locations to bikes
+gem 'simple_form'
+gem 'country_select'
+gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Dont Use sqlite3 as the database for Active Record
