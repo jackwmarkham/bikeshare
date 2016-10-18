@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
-
+<% lats = []
+  longs = [] %>
 <h1>Listing Bikes</h1>
-
+<%= form_tag(bikes_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search bikes" %>
+<%= text_field_tag :radius, params[:radius], placeholder: "Radius (km)" %>
+<%= submit_tag "Search" %>
+<% end %>
 <table>
   <thead>
     <tr>
@@ -22,10 +27,44 @@
         <td><%= link_to 'Edit', edit_bike_path(bike) %></td>
         <td><%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% lats << bike.latitude
+          longs << bike.longitude %>
     <% end %>
   </tbody>
 </table>
 
+<br>
+<% aveLat = lats.inject{ |sum, el| sum + el }.to_f / lats.size
+aveLong = longs.inject{ |sum, el| sum + el }.to_f / longs.size %>
+
+<div style="width: 50%; height: 50%;" id="map"></div>
+    <script>
+      function initMap() {
+        var aveLatLong = {lat: <%= aveLat %>, lng: <%= aveLong %>}
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: aveLatLong
+        });
+<% @bikes.each_with_index do |bike, i| %>
+        var bikeLatLong<%= i %> = {lat: <%= bike.latitude %>, lng: <%= bike.longitude %>};
+        var infowindow<%= i %> = new google.maps.InfoWindow({
+        content: "<span><p><%= bike.title %></p></span>"
+        });
+        var marker<%= i %> = new google.maps.Marker({
+          position: bikeLatLong<%= i %>,
+          map: map,
+          title: '<%= bike.title %>'
+        });
+        google.maps.event.addListener(marker<%= i %>, 'click', function() {
+        infowindow<%= i %>.open(map,marker<%= i %>);
+        });
+<% end %>
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap">
+    </script>
 <br>
 
 <%= link_to 'New Bike', new_bike_path %>

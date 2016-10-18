@@ -5,7 +5,13 @@ class BikesController < ApplicationController
   # GET /bikes.json
   def index
     @bikes = Bike.all
+    if params[:search] && params[:radius]
+      @bikes = Bike.near(params[:search], params[:radius], :units => :km)
+    else
+      @bikes = Bike.all.order('created_at DESC')
+    end
   end
+
 
   # GET /bikes/1
   # GET /bikes/1.json
@@ -69,6 +75,6 @@ class BikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bike_params
-      params.require(:bike).permit(:profile_id, :description, :gears, {pictures: []}, :title, :price_hr, :price_day, :price_week, :location, :delivery, :listed)
+      params.require(:bike).permit(:profile_id, :description, :gears, {pictures: []}, :title, :price_hr, :price_day, :price_week, :location, :delivery, :listed, :street, :suburb, :state, :postcode, :country, :latitude, :longitude)
     end
 end

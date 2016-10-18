@@ -46,5 +46,28 @@ $(document).ready(function(){
         </div>
         <div class="col s1"></div>
 
-    </div>
+
+</div>
+<div id="map"></div>
+<script>
+
+function initMap() {
+var myLatLng = {lat: <%= @bike.latitude %>, lng: <%= @bike.longitude %>};
+
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 12,
+  center: myLatLng
+});
+
+var marker = new google.maps.Marker({
+  position: myLatLng,
+  map: map,
+  title: 'Hello World!'
+});
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap">
+</script>
+
 </div>
