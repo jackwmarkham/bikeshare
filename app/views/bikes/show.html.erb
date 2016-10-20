@@ -36,9 +36,15 @@ $(document).ready(function(){
                         </p>
                         <div class="card-action">
 
+                          <% if current_user == @bike.profile.user %>
                             <%= link_to 'Edit', edit_bike_path(@bike) %>
-                            |
+                          <% else %>
+                          <%= link_to 'Make a booking', new_booking_path(:b_id => @bike) %>
+
+
+                          <% end %>
                             <%= link_to 'Back', bikes_path %>
+
                         </div>
                     </div>
                 </div>
