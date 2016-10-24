@@ -26,6 +26,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id if current_user
+    @booking.price = (@booking.bike.price_day*(@booking.end.to_date - @booking.begin.to_date))
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -69,6 +70,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:user_id, :bike_id, :begin, :end, :message, :confirmation)
+      params.require(:booking).permit(:user_id, :bike_id, :begin, :end, :message, :confirmation, :price)
     end
 end
