@@ -9,6 +9,8 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'cloudinary'
 #Devise used for user management
 gem 'devise'
+#Stripe integrated as payment gateway
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 #Dropzone to make image uploads more intuitive
 #gem 'dropzonejs-rails'
 #For adding pickup locations to bikes
