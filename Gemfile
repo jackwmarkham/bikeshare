@@ -11,6 +11,8 @@ gem 'cloudinary'
 gem 'devise'
 #Stripe integrated as payment gateway
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
+#Acts as votable to enable ratings and reviews
+gem 'acts_as_votable', '~> 0.10.0'
 #Dropzone to make image uploads more intuitive
 #gem 'dropzonejs-rails'
 #For adding pickup locations to bikes

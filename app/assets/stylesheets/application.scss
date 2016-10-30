@@ -35,8 +35,8 @@ body {
 }
 
 #map {
-  height: 100%;
-  position: absolute !important;
+  height: 100vh;
+
 }
 
 #booking_end_1i {
@@ -97,4 +97,25 @@ body {
   display: inline !important;
   width: auto !important;
   height: auto !important;
+}
+
+.jumbotron {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-image: image-url("landing-image.jpg");
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.home-search {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50vh;
+  padding: 10px;
+  background-color: grey;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.49);
 }

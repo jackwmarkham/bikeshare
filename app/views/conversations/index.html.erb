@@ -10,7 +10,8 @@
           <% else %>
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
-          <%= link_to recipient.first_name, conversation_messages_path(conversation)%>
+          <%= link_to recipient.profile.first_name, conversation_messages_path(conversation)%>
+          <%= conversation.inspect %>
         <% end %>
       <% end %>
     </div>

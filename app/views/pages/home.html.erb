@@ -1,5 +1,10 @@
-<div class='container'>
-  <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="jumbotron">
+  <div class="home-search">
+    <%= form_tag(bikes_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Location", style: "width: 40%;" %>
 
+    <%= number_field :radius, params[:radius], placeholder: "Search Radius (km)", style: "width: 40%;" %>
+    <%= submit_tag  "Find", class: "btn waves-effect waves-light", style: "vertical-align: middle;"   %>
+    <% end %>
+  </div>
 </div>

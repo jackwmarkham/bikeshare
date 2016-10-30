@@ -6,7 +6,7 @@ class BikesController < ApplicationController
   def index
     @bikes = Bike.all
     if params[:search] && params[:radius]
-      @bikes = Bike.near(params[:search], params[:radius], :units => :km)
+      @bikes = Bike.near(params[:search], params[:radius].first, :units => :km)
     else
       @bikes = Bike.all.order('created_at DESC')
     end

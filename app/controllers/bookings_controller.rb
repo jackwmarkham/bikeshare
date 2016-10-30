@@ -1,6 +1,46 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
+#rating methods
+def voteone
+  @booking = Booking.find(params[:id])
+  @booking.vote_by :voter => current_user, :vote_weight => 1
+  redirect_to bookings_path
+end
+
+def votetwo
+  @booking = Booking.find(params[:id])
+  @booking.vote_by :voter => current_user, :vote_weight => 2
+  redirect_to bookings_path
+end
+
+def votethree
+  @booking = Booking.find(params[:id])
+  @booking.vote_by :voter => current_user, :vote_weight => 3
+  redirect_to bookings_path
+end
+
+def votefour
+  @booking = Booking.find(params[:id])
+  @booking.vote_by :voter => current_user, :vote_weight => 4
+  redirect_to bookings_path
+end
+
+def votefive
+  @booking = Booking.find(params[:id])
+  @booking.vote_by :voter => current_user, :vote_weight => 5
+  redirect_to bookings_path
+end
+
+def unvote
+  @booking = Booking.find(params[:id])
+  @booking.unvote_by current_user
+  redirect_to bookings_path
+end
+
+
+
+
   # GET /bookings
   # GET /bookings.json
   def index
@@ -25,7 +65,9 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
+#Applies current user's id to the booking when created
     @booking.user_id = current_user.id if current_user
+#Calculates the transaction value when booking is created
     @booking.price = (@booking.bike.price_day*(@booking.end.to_date - @booking.begin.to_date))
     respond_to do |format|
       if @booking.save
