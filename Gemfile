@@ -13,6 +13,9 @@ gem 'devise'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 #Acts as votable to enable ratings and reviews
 gem 'acts_as_votable', '~> 0.10.0'
+#Font-awesome and awesome_link for voting stars
+gem 'awesome_link'
+gem 'font-awesome-rails'
 #Dropzone to make image uploads more intuitive
 #gem 'dropzonejs-rails'
 #For adding pickup locations to bikes

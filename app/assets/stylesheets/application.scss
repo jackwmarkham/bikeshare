@@ -16,6 +16,12 @@
 @import "materialize/components/color";
 $primary-color: color("grey", "darken-3") !default;
 @import 'materialize';
+@import "font-awesome";
+
+.card-panel, a {
+  color: blue;
+  text-decoration: underline;
+}
 
 body {
   background-color: #757575;

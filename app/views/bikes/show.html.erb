@@ -34,6 +34,20 @@ $(document).ready(function(){
                             <strong>Gears:</strong>
                             <%= @bike.gears %>
                         </p>
+                        <p>
+                          <strong>Rating:</strong>
+                          <% bookings = Booking.where(:bike_id => @bike.id) %>
+                          <% ratings = [] %>
+                          <% bookings.each do |b| %>
+                            <% if b.score.nan? %>
+                            <% else %>
+                              <% ratings << b.score %>
+                            <% end %>
+                          <% end %>
+                          <%= ratings.inject{ |sum, el| sum + el }.to_f / ratings.size %> <%= fa_icon "star" %>
+
+                        </p>
+
                         <div class="card-action">
 
                           <% if current_user == @bike.profile.user %>

@@ -54,6 +54,7 @@ GEM
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
     arel (6.0.3)
+    awesome_link (0.0.6)
     aws_cf_signer (0.1.3)
     bcrypt (3.1.11-x86-mingw32)
     binding_of_caller (0.7.2)
@@ -90,6 +91,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14-x86-mingw32)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     geocoder (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -210,12 +213,14 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
+  awesome_link
   byebug
   carrierwave!
   cloudinary
   coffee-rails (~> 4.1.0)
   country_select
   devise
+  font-awesome-rails
   geocoder
   jbuilder (~> 2.0)
   jquery-rails

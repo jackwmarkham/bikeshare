@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  resources :bookings
+  resources :bookings do
+  member do
+    put "voteone", to: "bookings#voteone"
+    put "votetwo", to: "bookings#votetwo"
+    put "votethree", to: "bookings#votethree"
+    put "votefour", to: "bookings#votefour"
+    put "votefive", to: "bookings#votefive"
+    put "unvote", to: "bookings#unvote"
+  end
+end
+
   resources :bikes
   resources :profiles
   resources :charges

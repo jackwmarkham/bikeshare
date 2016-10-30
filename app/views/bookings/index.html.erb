@@ -8,16 +8,70 @@
           <div class="card-panel teal">
               <%= booking.user.profile.first_name %></br>
               <%= booking.bike.profile.first_name %></br>
-              <%= booking.begin.to_date %></br>
+              <%= booking.begin.to_date %> to
               <%= booking.end.to_date %></br>
               <%= booking.message %></br>
-              <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: current_user.id, recipient_id: booking.bike.profile.user.id), method: 'post' %>
+              <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: current_user.id, recipient_id: booking.bike.profile.user.id), method: 'post' %> </br>
               <%= booking.price %></br>
                 <% if booking.confirmation == false %>
                   Confirmation Pending
                 <% else %>
                   Booking Confirmed
                 <% end %></br>
+
+<!-- rating system code -->
+
+
+  <% if user_signed_in? && booking.end < Time.now && booking.user == current_user %>
+    <% if current_user.voted_for? booking %>
+      <% a = Vote.find_by(:voter_id => current_user.id, :votable_id => booking.id) %>
+      <% if a.vote_weight == 1 %>
+      <%= awesome_link('fa-star', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
+    <% elsif a.vote_weight == 2 %>
+      <%= awesome_link('fa-star', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
+    <% elsif a.vote_weight == 3 %>
+      <%= awesome_link('fa-star', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
+    <% elsif a.vote_weight == 4 %>
+      <%= awesome_link('fa-star', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
+    <% elsif a.vote_weight == 5 %>
+      <%= awesome_link('fa-star', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star', votefive_booking_path(booking), method: :put) %>
+    <% end %>
+    <% else %>
+      <%= awesome_link('fa-star-o', voteone_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votetwo_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votethree_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefour_booking_path(booking), method: :put) %>
+      <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
+  <% end %>
+<% end %>
+
+<% if booking.score.nan? %>
+<% else %>
+<%= booking.score %>
+<% end %>
+</br>
+
+
               <%= link_to 'Show', booking %>
               <%= link_to 'Edit', edit_booking_path(booking) %>
               <%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -43,6 +97,13 @@
                   <% else %>
                   Booking Confirmed
                 <% end %></br>
+
+
+
+
+
+
+
                 <%= link_to 'Show', booking %>
                 <%= link_to 'Edit', edit_booking_path(booking) %>
                 <%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
