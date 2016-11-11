@@ -12,15 +12,17 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  */
+
+
 @import "materialize/components/color";
 $primary-color: color("grey", "darken-3") !default;
 @import 'materialize';
 @import "font-awesome";
 
 .card-panel, a {
-  color: blue;
-  text-decoration: underline;
+  color: white;
 }
 
 body {

@@ -31,23 +31,10 @@
     </div>
 </div>
 <div class="input-field">
-    <%= f.label :gears %><br>
-    <%= f.number_field :gears %>
-</div>
-<div class="input-field">
-    <%= f.label :price_day %><br>
+    <%= f.label "Price Per Day" %><br>
     <%= f.number_field :price_day, class: :text_field, step: 0.01 %>
 </div>
 </br>
-<div class="field">
-    <%= f.check_box :delivery%>
-    <%= f.label :delivery, "I am able to deliver if convenient"  %>
-</div>
-</br>
-<div class="field">
-    <%= f.check_box :listed %>
-    <%= f.label :listed, "Make my bike available to search." %>
-</div>
 </br>
 
 <div class="input-field">
@@ -70,14 +57,6 @@
     <div class="input-field">
         <%= f.label :country %><br>
     <%= f.text_field :country %>
-  </div>
-    <div class="input-field">
-        <%= f.label :latitude %><br>
-    <%= f.number_field :latitude %>
-  </div>
-    <div class="input-field">
-        <%= f.label :longitude %><br>
-    <%= f.number_field :longitude %>
   </div>
 </br>
 <div class="actions">

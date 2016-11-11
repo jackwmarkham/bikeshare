@@ -1,23 +1,28 @@
-<p id="notice"><%= notice %></p>
+
+<div class='container'>
+  <div class='row'>
+    <div class="card grey darken-3">
+      <div class="card-content white-text">
 
 <p>
-  <strong>User:</strong>
-  <%= @booking.user %>
+  <strong>Renter:</strong>
+  <%= @booking.user.profile.first_name %>
+</p>
+
+<p>
+  <strong>Lister:</strong>
+  <%= @booking.bike.profile.first_name %>
 </p>
 
 <p>
   <strong>Bike:</strong>
-  <%= @booking.bike %>
+  <% bike = @booking.bike.id %>
+  <%= link_to "#{@booking.bike.title}", bike_path(:id => @booking.bike.id)  %>
 </p>
 
 <p>
-  <strong>Begin:</strong>
-  <%= @booking.begin %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @booking.end %>
+  <strong>Booking:</strong>
+  <%= @booking.begin.to_date %> to <%= @booking.end.to_date %>
 </p>
 
 <p>
@@ -26,14 +31,22 @@
 </p>
 
 <p>
-  <strong>price:</strong>
+  <strong>Price:</strong>
   <%= @booking.price %>
 </p>
 
 <p>
   <strong>Confirmation:</strong>
-  <%= @booking.confirmation %>
+  <% if @booking.confirmation == nil %>
+    Pending...
+  <% end %>
 </p>
+<div class="card-action">
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+<%= link_to 'Edit', edit_booking_path(@booking) %>
+<%= link_to 'Bookings', bookings_path %>
+</div>
+</div>
+</div>
+</div>
+</div>

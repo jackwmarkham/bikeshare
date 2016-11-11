@@ -1,5 +1,8 @@
 <%= simple_form_for(@booking) do |f| %>
 <%= f.error_notification %>
+<div class='row'>
+  <div class="card grey darken-3">
+    <div class="card-content black-text">
 
 <div class="form-inputs">
     <% @bid_secure =  params[:b_id].to_i %>
@@ -18,8 +21,6 @@
 
         <%= f.text_area :message, class: "materialize-textarea", placeholder: "Write a message to the lister" %>
 </div>
-        <%= f.check_box :confirmation %>
-        <%= f.label :confirmation, "Confirm this booking" %>
     <br><br>
 </div>
 
@@ -27,3 +28,6 @@
     <%= f.button :submit %>
 </div>
 <% end %>
+</div>
+</div>
+</div>

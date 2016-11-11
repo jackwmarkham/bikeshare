@@ -13,7 +13,7 @@ $(document).ready(function(){
                     <div class="card-content white-text">
                         <span class="card-title"><%= @bike.title  %></span>
 
-                        <p id="notice"><%= notice %></p>
+                        
 
                         <div class="carousel">
                           <% @bike.pictures.each do |pic| %>
@@ -31,10 +31,6 @@ $(document).ready(function(){
                         </p>
 
                         <p>
-                            <strong>Gears:</strong>
-                            <%= @bike.gears %>
-                        </p>
-                        <p>
                           <strong>Rating:</strong>
                           <% bookings = Booking.where(:bike_id => @bike.id) %>
                           <% ratings = [] %>
@@ -43,8 +39,21 @@ $(document).ready(function(){
                             <% else %>
                               <% ratings << b.score %>
                             <% end %>
+
                           <% end %>
+
+
+
                           <%= ratings.inject{ |sum, el| sum + el }.to_f / ratings.size %> <%= fa_icon "star" %>
+                        </br><strong>Current Bookings:</strong></br>
+                          <% bookings.each do |b| %>
+                            <% if b.confirmation == true %>
+                            <%= b.begin.to_date %> to <%= b.end.to_date %> <br>
+                            <% else %>
+                            <%  end %>
+                            <% end %>
+
+
 
                         </p>
 

@@ -16,8 +16,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 #Font-awesome and awesome_link for voting stars
 gem 'awesome_link'
 gem 'font-awesome-rails'
-#Dropzone to make image uploads more intuitive
-#gem 'dropzonejs-rails'
+#Toastr-rails for displaying notifications
+gem 'toastr-rails'
 #For adding pickup locations to bikes
 gem 'simple_form'
 gem 'country_select'
