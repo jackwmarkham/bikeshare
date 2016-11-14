@@ -1,33 +1,39 @@
 <%= simple_form_for(@booking) do |f| %>
 <%= f.error_notification %>
 <div class='row'>
-  <div class="card grey darken-3">
-    <div class="card-content black-text">
+    <div class="card grey darken-3">
+        <div class="card-content black-text">
 
-<div class="form-inputs">
-    <% @bid_secure =  params[:b_id].to_i %>
-    <%= f.text_field :bike_id, value: @bid_secure, type: "hidden" %>
-    <div class="input-field">
-        <%= f.label :begin %><br><br>
-        <%= f.date_select :begin %>
+            <div class="form-inputs">
+                <% @bid_secure =  params[:b_id].to_i %>
+                <%= f.text_field :bike_id, value: @bid_secure, type: "hidden" %>
+                <% if @booking.user == current_user %>
+                <div class="input-field">
+                    <%= f.label :begin %><br><br>
+                    <%= f.date_select :begin %>
+                </div>
+                <div class="input-field">
+                    <%= f.label :end %><br><br>
+                    <%= f.date_select :end %>
+                </div>
+                <div class="input-field">
+                    <%= f.label :message %>
+
+                    <%= f.text_area :message, class: "materialize-textarea", placeholder: "Write a message to the lister" %>
+                </div>
+                <% else %>
+                <div>
+                  <%= f.check_box :confirmation %>
+                  <%= f.label :confirmation, "Confirm this booking" %>
+                </div>
+                <% end %>
+                <br><br>
+            </div>
+
+            <div class="form-actions">
+                <%= f.button :submit, "Submit"%>
+            </div>
+            <% end %>
+        </div>
     </div>
-    <div class="input-field">
-        <%= f.label :end %><br><br>
-        <%= f.date_select :end %>
-    </div>
-    <div class="input-field" >
-    <%= f.label :message %>
-
-
-        <%= f.text_area :message, class: "materialize-textarea", placeholder: "Write a message to the lister" %>
-</div>
-    <br><br>
-</div>
-
-<div class="form-actions">
-    <%= f.button :submit %>
-</div>
-<% end %>
-</div>
-</div>
 </div>

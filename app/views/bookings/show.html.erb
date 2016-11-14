@@ -37,9 +37,7 @@
 
 <p>
   <strong>Confirmation:</strong>
-  <% if @booking.confirmation == nil %>
-    Pending...
-  <% end %>
+  <%= @booking.confirmation %>
 </p>
 <div class="card-action">
 

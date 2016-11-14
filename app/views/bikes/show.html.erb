@@ -1,102 +1,91 @@
 <script>
-$(document).ready(function(){
-     $('.carousel').carousel();
-   });
+    $(document).ready(function () {
+        $('.carousel').carousel();
+    });
 </script>
 <div class="container">
-    <div class='container'>
-        <div class="row">
-            <div class="col s1"></div>
+    <div class="row">
 
-            <div class="col s10">
-                <div class="card grey darken-3">
-                    <div class="card-content white-text">
-                        <span class="card-title"><%= @bike.title  %></span>
-
-                        
-
-                        <div class="carousel">
-                          <% @bike.pictures.each do |pic| %>
-                          <a class="carousel-item"><%= image_tag(pic.url) %></a>
-                          <% end %>
-                        </div>
-                        <p>
-                            <strong>Profile:</strong>
-                            <%= @bike.profile.first_name %> <%= @bike.profile.last_name %>
-                        </p>
-
-                        <p>
-                            <strong>Description:</strong>
-                            <%= @bike.description %>
-                        </p>
-
-                        <p>
-                          <strong>Rating:</strong>
-                          <% bookings = Booking.where(:bike_id => @bike.id) %>
-                          <% ratings = [] %>
-                          <% bookings.each do |b| %>
-                            <% if b.score.nan? %>
-                            <% else %>
-                              <% ratings << b.score %>
-                            <% end %>
-
-                          <% end %>
-
-
-
-                          <%= ratings.inject{ |sum, el| sum + el }.to_f / ratings.size %> <%= fa_icon "star" %>
-                        </br><strong>Current Bookings:</strong></br>
-                          <% bookings.each do |b| %>
-                            <% if b.confirmation == true %>
-                            <%= b.begin.to_date %> to <%= b.end.to_date %> <br>
-                            <% else %>
-                            <%  end %>
-                            <% end %>
-
-
-
-                        </p>
-
-                        <div class="card-action">
-
-                          <% if current_user == @bike.profile.user %>
-                            <%= link_to 'Edit', edit_bike_path(@bike) %>
-                          <% else %>
-                          <%= link_to 'Make a booking', new_booking_path(:b_id => @bike) %>
-
-
-                          <% end %>
-                            <%= link_to 'Back', bikes_path %>
-
-                        </div>
+        <div class="col s12">
+            <div class="card grey darken-3">
+                <div class="card-content white-text">
+                    <div class="carousel">
+                        <% @bike.pictures.each do |pic| %>
+                        <a class="carousel-item"><%= image_tag(pic.url) %></a>
+                        <% end %>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s1"></div>
+                    <h4><%= @bike.title%></h4>
+                    <p>
+                        <%= @bike.description %></br>
+                    <strong>Listed by</strong>
+                    <%= link_to "#{@bike.profile.first_name} #{@bike.profile.last_name}", @bike.profile %>
+                </p>
+                <p>
+                    <strong>Rating:</strong>
+                    <% bookings = Booking.where(:bike_id => @bike.id) %>
+                    <% ratings = [] %>
+                    <% bookings.each do |b| %>
+                    <% if b.score.nan? %>
+                <% else %>
+                    <% ratings << b.score %>
+                    <% end %>
+                    <% end %>
+                    <% ave_rating = ratings.inject{ |sum, el| sum + el }.to_f / ratings.size %>
+                    <% if ave_rating.nan? %>
+                    0
+                <% else %>
+                    <%= ave_rating %>
+                    <% end %>
+                    <%= fa_icon "star" %>
+                </br>
+                <strong>Current Bookings:</strong>
+            </br>
+            <% bookings.each do |b| %>
+            <% if b.confirmation == true %>
+            >
+            <%= b.begin.to_date %>
+            to
+            <%= b.end.to_date %>
+            <br>
+        <% else %>
+            <%  end %>
+            <% end %>
 
+        </p>
+
+        <div class="card-action">
+
+            <% if current_user == @bike.profile.user %>
+            <%= link_to 'Edit', edit_bike_path(@bike) %>
+        <% else %>
+            <%= link_to 'Make a booking', new_booking_path(:b_id => @bike) %>
+
+            <% end %>
+            <%= link_to 'Back', bikes_path %>
+
+        </div>
+    </div>
+</div>
+</div>
 
 </div>
 <div id="map"></div>
 <script>
 
 function initMap() {
-var myLatLng = {lat: <%= @bike.latitude %>, lng: <%= @bike.longitude %>};
+    var myLatLng = {
+        lat: <%= @bike.latitude %>,
+        lng: <%= @bike.longitude %>
+    };
 
-var map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 12,
-  center: myLatLng
-});
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+    });
 
-var marker = new google.maps.Marker({
-  position: myLatLng,
-  map: map,
-  title: 'Hello World!'
-});
+    var marker = new google.maps.Marker({position: myLatLng, map: map, title: 'Hello World!'});
 }
 </script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap"></script>
 
 </div>

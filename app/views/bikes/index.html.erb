@@ -1,44 +1,45 @@
-
 <% lats = []
   longs = [] %>
 
 <div class="row">
-  <div class="col s6">
-    <%= form_tag(bikes_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search bikes", style: "width: 40%" %>
-    <%= text_field_tag :radius, params[:radius], placeholder: "Radius (km)", style: "width: 40%" %>
-    <%= submit_tag "Find", class: "btn waves-effect waves-light", style: "vertical-align: middle;"    %>
-    <% end %>
+    <div class="col s6" id="bike-list">
+        <%= form_tag(bikes_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search bikes", style: "width: 40%" %>
+        <%= text_field_tag :radius, params[:radius], placeholder: "Radius (km)", style: "width: 40%" %>
+        <%= submit_tag "Find", class: "btn waves-effect waves-light", style: "vertical-align: middle;"    %>
+        <% end %>
 
-    <% @bikes.each do |bike| %>
+        <% @bikes.each do |bike| %>
 
-       <div class="card horizontal">
-         <div class="card-image" style="max-width: 25%">
-           <%= image_tag(bike.pictures.first.url) %>
-         </div>
-         <div class="card-stacked">
-           <div class="card-content">
-             <h5> <%= bike.title %> </h5>
-             <p><%= bike.description %><br>
-                $<%= bike.price_day %> per day <br>
-                <%= bike.suburb %><br>
-                </p>
-           </div>
-           <div class="card-action">
-             <%= link_to 'Show', bike %>
-             <% if bike.profile.user = current_user %>
-             <%= link_to 'Edit', edit_bike_path(bike) %>
-             <%= link_to 'Destroy', bike, method: :delete, data: { confirm: 'Are you sure?' } %>
-             <% else %>
-             <% end %>
-           </div>
-         </div>
-       </div>
+        <div class="card horizontal">
+            <div class="card-image" style="max-width: 25%">
+                <%= image_tag(bike.pictures.first.url) %>
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h5>
+                        <%= bike.title %>
+                    </h5>
+                    <p>
+                        <strong>Description:</strong><%= bike.description %><br>
+                        <strong>Price:</strong> $<%= bike.price_day.round(2) %>/day<br>
+                        <strong>Location:</strong> <%= bike.suburb %><br>
+                    </p>
+                </div>
+                <div class="card-action">
+                    <%= link_to 'See More', bike %>
+                    <% if bike.profile.user == current_user %>
+                      <%= link_to 'Edit Listing', edit_bike_path(bike) %>
+                      <%= link_to 'Delete Listing', bike, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
 
-      <% lats << bike.latitude
+        <% lats << bike.latitude
           longs << bike.longitude %>
-    <% end %>
-  </tbody>
+        <% end %>
+    </tbody>
 </table>
 
 <br>
@@ -47,33 +48,31 @@
 aveLong = longs.inject{ |sum, el| sum + el }.to_f / longs.size %>
 
 <div class="col s6" id="map"></div>
-    <script>
-      function initMap() {
-        var aveLatLong = {lat: <%= aveLat %>, lng: <%= aveLong %>}
+<script>
+function initMap() {
+    var aveLatLong = {
+        lat: <%= aveLat %>,
+        lng: <%= aveLong %>
+    }
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: aveLatLong
-        });
-<% @bikes.each_with_index do |bike, i| %>
-        var bikeLatLong<%= i %> = {lat: <%= bike.latitude %>, lng: <%= bike.longitude %>};
-        var infowindow<%= i %> = new google.maps.InfoWindow({
-        content: "<span><p><%= bike.title %></p></span>"
-        });
-        var marker<%= i %> = new google.maps.Marker({
-          position: bikeLatLong<%= i %>,
-          map: map,
-          title: '<%= bike.title %>'
-        });
-        google.maps.event.addListener(marker<%= i %>, 'click', function() {
-        infowindow<%= i %>.open(map,marker<%= i %>);
-        });
-<% end %>
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap">
-    </script>
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: aveLatLong
+    });
+    <% @bikes.each_with_index do |bike, i| %>
+    var bikeLatLong <%= i %> = {
+        lat: <%= bike.latitude %>,
+        lng: <%= bike.longitude %>
+    };
+    var infowindow <%= i %> = new google.maps.InfoWindow({content: "<span><p><%= bike.title %></p></span>"});
+    var marker <%= i %> = new google.maps.Marker({position: bikeLatLong <%= i %>, map: map, title: '<%= bike.title %>'});
+    google.maps.event.addListener(marker <%= i %>, 'click', function () {
+        infowindow <%= i %>.open(map, marker <%= i %>);
+    });
+    <% end %>
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCgSnctlOV7YeWUlat461Kncs57BYaJo0&callback=initMap"></script>
 <br>
 
 </div>

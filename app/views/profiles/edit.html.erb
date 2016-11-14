@@ -1,6 +1,18 @@
-<h1>Editing Profile</h1>
+<div class="container">
+    <div class="row">
 
-<%= render 'form' %>
+        <div class="col s12">
+            <div class="card grey darken-3">
+                <div class="card-content white-text">
+                    <span class="card-title">Edit Your Profile</span>
+                    <%= render 'form' %>
+                    <div class="card-action">
+                        <%= link_to 'Back', root_path %>
+                        <%= link_to 'See Profile', @profile %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<%= link_to 'Show', @profile %> |
-<%= link_to 'Back', profiles_path %>
+</div>

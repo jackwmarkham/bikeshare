@@ -5,25 +5,27 @@
       <h4>My Bookings</h4>
       <% @bookings.each do |booking| %>
         <% if booking.user == current_user  %>
-          <div class="card-panel teal">
-              <%= booking.user.profile.first_name %></br>
-              <%= booking.bike.profile.first_name %></br>
-              <%= booking.begin.to_date %> to
-              <%= booking.end.to_date %></br>
-              <%= booking.message %></br>
+          <div class="card-panel white">
+              <strong>Renter: </strong><%= booking.user.profile.first_name %></br>
+              <strong>Lister: </strong><%= booking.bike.profile.first_name %></br>
+              <strong>Booking Dates: </strong><%= booking.begin.to_date %> to <%= booking.end.to_date %></br>
+              <strong>Message: </strong><%= booking.message %></br>
               <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: current_user.id, recipient_id: booking.bike.profile.user.id), method: 'post' %> </br>
-              <%= booking.price %></br>
+              <strong>Booking Price: </strong>$<%= booking.price %></br>
                 <% if booking.confirmation == false %>
-                  Confirmation Pending
-                <% else %>
+                  Confirmation Pending...
+                <% elsif booking.confirmation == true %>
                   Booking Confirmed
-                  <br> Insert Stripe Here
+                  <br>
+
+                  <%= link_to "Pay Now", new_charge_path(:amt => booking.price, :bkg => booking.id)  %>
+
                 <% end %></br>
 
 <!-- rating system code -->
 
 
-  <% if user_signed_in? && booking.end < Time.now && booking.user == current_user %>
+  <% if user_signed_in? && booking.end < Time.now && booking.user == current_user && booking.confirmation == true %>
     <% if current_user.voted_for? booking %>
       <% a = Vote.find_by(:voter_id => current_user.id, :votable_id => booking.id) %>
       <% if a.vote_weight == 1 %>
@@ -64,18 +66,15 @@
       <%= awesome_link('fa-star-o', votefour_booking_path(booking), method: :put) %>
       <%= awesome_link('fa-star-o', votefive_booking_path(booking), method: :put) %>
   <% end %>
-<% end %>
-
-<% if booking.score.nan? %>
-<% else %>
-<%= booking.score %>
+  <% if booking.score.nan? %>
+  <% else %>
+  <strong>Rating: </strong><%= booking.score %>
+  <% end %>
 <% end %>
 </br>
 
 
-              <%= link_to 'Show', booking %>
-              <%= link_to 'Edit', edit_booking_path(booking) %>
-              <%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit Booking', edit_booking_path(booking) %> -- <%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         <% end %>
       <% end %>
@@ -84,30 +83,18 @@
       <h4>Bookings for my bikes</h4>
         <% @bookings.each do |booking| %>
           <% if booking.bike.profile.user_id == current_user.id %>
-            <div class="card-panel teal">
-                <%= booking.bike.profile.user_id %>
-                <%= booking.user.profile.first_name %></br>
-                <%= booking.bike.profile.first_name %></br>
-                <%= booking.begin.to_date %></br>
-                <%= booking.end.to_date %></br>
-                <%= booking.message %></br>
+            <div class="card-panel white">
+                <strong>Renter: </strong><%= booking.user.profile.first_name %></br>
+                <strong>Lister: </strong><%= booking.bike.profile.first_name %></br>
+                <strong>Booking Dates: </strong><%= booking.begin.to_date %> to <%= booking.end.to_date %></br>
+                <strong>Message: </strong><%= booking.message %></br>
                 <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: current_user.id, recipient_id: booking.bike.profile.user.id), method: 'post' %>
                 <%= booking.price %></br>
                 <% if booking.confirmation == false %>
-                  Confirmation Pending
-                  <% else %>
-                  Booking Confirmed
-                <% end %></br>
-
-
-
-
-
-
-
-                <%= link_to 'Show', booking %>
-                <%= link_to 'Edit', edit_booking_path(booking) %>
-                <%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to 'Confirm?', edit_booking_path(booking) %>
+                <% else %>
+                  Booking Confirmed!
+                <% end %>
             </div>
           <% end %>
         <% end %>

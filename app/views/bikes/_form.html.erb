@@ -31,36 +31,36 @@
     </div>
 </div>
 <div class="input-field">
-    <%= f.label "Price Per Day" %><br>
+    <%= f.label "Price Per Day ($)" %><br>
     <%= f.number_field :price_day, class: :text_field, step: 0.01 %>
 </div>
 </br>
 </br>
 
 <div class="input-field">
-    <%= f.label :street %><br>
+<%= f.label :street %><br>
 
 <%= f.text_field :street %>
 </div>
-<div class="input-field">
-    <%= f.label :suburb %><br>
-    <%= f.text_field :suburb %>
-  </div>
-    <div class="input-field">
-        <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-    <div class="input-field">
-        <%= f.label :postcode %><br>
-    <%= f.text_field :postcode %>
-  </div>
-    <div class="input-field">
-        <%= f.label :country %><br>
-    <%= f.text_field :country %>
-  </div>
+<div class="input-field" style="width: 40%; display: inline-block;">
+<%= f.label :suburb %><br>
+<%= f.text_field :suburb %>
+</div>
+<div class="input-field" style="width: 40%; display: inline-block;">
+<%= f.label :state %><br>
+<%= f.text_field :state %>
+</div>
+<div class="input-field" style="width: 40%; display: inline-block;">
+<%= f.label :postcode %><br>
+<%= f.text_field :postcode %>
+</div>
+<div class="input-field" style="width: 40%; display: inline-block;">
+<%= f.label :country %><br>
+<%= f.text_field :country %>
+</div>
 </br>
 <div class="actions">
-    <%= f.submit "List My Bike", class: "btn waves-effect waves-light"  %>
+<%= f.submit "List My Bike", class: "btn waves-effect waves-light"  %>
 </div>
 </br>
 <% end %>

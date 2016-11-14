@@ -21,10 +21,6 @@ $primary-color: color("grey", "darken-3") !default;
 @import 'materialize';
 @import "font-awesome";
 
-.card-panel, a {
-  color: white;
-}
-
 body {
   background-color: #757575;
 }
@@ -37,75 +33,79 @@ body {
 .profile_pic {
   height: auto;
   width: 50%;
-  display: blick;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 #map {
-  height: 100vh;
-
+  height: calc(100vh - 83px);
 }
 
-#booking_end_1i {
+#bike-list {
+  overflow-y: scroll;
+  height: calc(100vh - 83px)
+}
+
+#booking_end_1i, #booking_end_2i, #booking_end_3i, #booking_end_4i, #booking_end_5i, #booking_begin_1i, #booking_begin_2i, #booking_begin_3i, #booking_begin_4i, #booking_begin_5i {
   display: inline !important;
   width: auto !important;
   height: auto !important;
 }
-
-#booking_end_2i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_end_3i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_end_4i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_end_5i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_begin_1i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_begin_2i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_begin_3i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_begin_4i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-#booking_begin_5i {
-  display: inline !important;
-  width: auto !important;
-  height: auto !important;
-}
+//
+// #booking_end_2i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_end_3i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_end_4i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_end_5i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_begin_1i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_begin_2i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_begin_3i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_begin_4i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
+//
+// #booking_begin_5i {
+//   display: inline !important;
+//   width: auto !important;
+//   height: auto !important;
+// }
 
 .jumbotron {
   width: 100vw;
