@@ -1,3 +1,6 @@
+<div class="container">
+  <div class ="card-panel white">
+
 <div class="ui segment">
   <h3>Mailbox</h3>
 
@@ -11,15 +14,15 @@
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
           <%= link_to recipient.profile.first_name, conversation_messages_path(conversation)%>
-          <%= conversation.inspect %>
+          <%= conversation.messages.last.body %></br>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
-
-<div class="ui segment">
+</div>
+</div>
+<!-- <div class="ui segment">
   <h3>All Users</h3>
   <div class="ui list">
     <% @users.each do |user| %>
@@ -30,4 +33,4 @@
       <% end %>
     <% end %>
   </div>
-</div>
+</div> -->

@@ -53,22 +53,22 @@ function initMap() {
     var aveLatLong = {
         lat: <%= aveLat %>,
         lng: <%= aveLong %>
-    }
+    };
 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: aveLatLong
     });
     <% @bikes.each_with_index do |bike, i| %>
-    var bikeLatLong <%= i %> = {
-        lat: <%= bike.latitude %>,
-        lng: <%= bike.longitude %>
-    };
-    var infowindow <%= i %> = new google.maps.InfoWindow({content: "<span><p><%= bike.title %></p></span>"});
-    var marker <%= i %> = new google.maps.Marker({position: bikeLatLong <%= i %>, map: map, title: '<%= bike.title %>'});
-    google.maps.event.addListener(marker <%= i %>, 'click', function () {
-        infowindow <%= i %>.open(map, marker <%= i %>);
-    });
+      var bikeLatLong<%= i %> = {
+          lat: <%= bike.latitude %>,
+          lng: <%= bike.longitude %>
+      };
+      var infowindow<%= i %> = new google.maps.InfoWindow({content: "<span><p><%= bike.title %></p></span>"});
+      var marker<%= i %> = new google.maps.Marker({position: bikeLatLong<%= i %>, map: map, title: '<%= bike.title %>'});
+      google.maps.event.addListener(marker<%= i %>, 'click', function () {
+          infowindow<%= i %>.open(map, marker<%= i %>);
+      });
     <% end %>
 }
 </script>
