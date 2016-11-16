@@ -29,8 +29,8 @@ development:
 
 test:
   <<: *default
-  database: "test_database_name"
+  database: "bikeshare_db"
 
 production:
   <<: *default
-  database: "production_database_name"
+  database: "bikeshare_db"
