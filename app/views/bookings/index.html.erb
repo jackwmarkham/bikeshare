@@ -89,7 +89,7 @@
                 <strong>Booking Dates: </strong><%= booking.begin.to_date %> to <%= booking.end.to_date %></br>
                 <strong>Message: </strong><%= booking.message %></br>
                 <strong>Booking Price: </strong>$<%= booking.price %></br>
-                <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: booking.user_id, recipient_id: current_user.id ), method: 'post' %></br>
+                <%= link_to "Send #{booking.user.profile.first_name} a message!", conversations_path(sender_id: booking.user_id, recipient_id: current_user.id ), method: 'post' %></br>
                 <% if booking.confirmation == false %>
                   <%= link_to 'Confirm?', edit_booking_path(booking) %>
                 <% else %>
