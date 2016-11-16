@@ -1,7 +1,7 @@
-# myTUT Rails Application - Coder Factory Project 2
+# BikeShare - A rails application by Jack Markham
 
-Deployed on Heroku:
-https://mytut101.herokuapp.com/
+Available on Heroku:
+https://jack-bikeshare.herokuapp.com/
 
 ## Application Setup
 
@@ -25,69 +25,19 @@ https://mytut101.herokuapp.com/
 ## Problem definition
 
 Bicycles are a product that people often either own but don't use, or have a brief
-need for but do not wish to purchase. To address this, I created a simple bike-
-sharing two-sided marketplace where people can create a profile and advertise
-a bike to be rented by another customer.
+need for but do not wish to purchase. Often cities implement large-scale bike-hiring systems
+(such as min Melbourne) but in Sydney this has not been done. Tourists especially would
+benefit from a large-scale 2-sided marketplace for bike hire.
 
 ## Solution
 
-myTUT allows tutors to create a tutor profile online where high school students
-would be able to choose from. The student and the tutor will contact each other
-using the messaging app and agree on when to meet. The student would then make
-a booking request. After approval of the request, the booking is confirmed and
-the student will have to pay for the tutoring session.
-
-TO DO
-
-The next step of the myTUT app would be to create a tutoring session between the
-tutor and the student. A session in which they can share documents, discuss and
-write/view on the same documents.
-
-## User Journey
-
-### Student
-
-Discovery -> Sign Up -> Tutors Selection -> Application(Booking) -> Transaction
--> Session -> Post Session
-
-### Tutor
-
-Education(Rules to follow as a tutor) -> Create Profile -> Application Review
--> Session -> Post Session
+Bikeshare allows people to monetize their unused bikes by listing them for hire online. It
+people can browse by location and find a product that suits their need and is within their
+price range, and submit a booking. These bookings can then be confirmed by the lister,
+and the details negotiated via the inbuilt messagin system.
 
 ## Deliverables
 
-- Wireframes: wireframes.pdf
+- ERD: https://drive.google.com/open?id=0B6uKZCBYz7lQUWltRnhHMWt6UVE
 
-- User Stories: Trello link: https://trello.com/b/GC0NBngH/mytut
-
-- Entity Relationship Diagram
- -Initial ERD: assets/images/ERDmyTUT.png
- -Made by rails-erd: erd.pdf
-
-## Project Estimation
-
-$25,000 with delivery time frame of 7-8 weeks.
-Link to excel sheet: https://docs.google.com/spreadsheets/d/1qSXGuMaW-1Pf1ZFfhPNunX6kRZ7YSCHYetMV6clzMew/edit?usp=sharing
-
-# Tools and Methodologies
-
-* Use of Trello for planning and progression review
-* Use of dbdesigner for ERD creation
-* User Slack to discuss with my peers
-* Github: liptonite24/mytut
-* Rubocop and Rubycritic (NOT DONE)
-
-# Rails Application
-
-- [x] Use of postgresql database in development
-- [x] Implemented Omniauth-facebook
-- [x] Environment Variables set in Bash and in Heroku Config
-- [x] Implemented a payment system using stripe (test mode)
-- [x] Implemented Mailgun when transaction is completed (disable because sandbox mode)
-- [x] Implemented messaging system
-- [x] Search for tutors available
-- [x] Implemented carrierwave and cloudinary for profile picture and cloud storage
-- [x] Implemented Devise authentication
-- [x] Implemented Cancancan for authorisation
-- [x] Implemented an Admin dashboard
+- Wireframes: https://drive.google.com/open?id=0B6uKZCBYz7lQSXlheGxKN2dDVkE
