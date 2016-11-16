@@ -8,6 +8,7 @@
           <div class="card-panel white">
               <strong>Renter: </strong><%= booking.user.profile.first_name %></br>
               <strong>Lister: </strong><%= booking.bike.profile.first_name %></br>
+              <strong>Bike: </strong> <%= link_to "#{booking.bike.title}", booking.bike %> </br>
               <strong>Booking Dates: </strong><%= booking.begin.to_date %> to <%= booking.end.to_date %></br>
               <strong>Message: </strong><%= booking.message %></br>
               <%= link_to "Send #{booking.bike.profile.first_name} a message!", conversations_path(sender_id: current_user.id, recipient_id: booking.bike.profile.user_id), method: 'post' %> </br>
@@ -86,6 +87,7 @@
             <div class="card-panel white">
                 <strong>Renter: </strong><%= booking.user.profile.first_name %></br>
                 <strong>Lister: </strong><%= booking.bike.profile.first_name %></br>
+                <strong>Bike: </strong> <%= link_to "#{booking.bike.title}", booking.bike %> </br>
                 <strong>Booking Dates: </strong><%= booking.begin.to_date %> to <%= booking.end.to_date %></br>
                 <strong>Message: </strong><%= booking.message %></br>
                 <strong>Booking Price: </strong>$<%= booking.price %></br>
